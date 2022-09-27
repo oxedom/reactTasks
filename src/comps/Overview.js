@@ -1,6 +1,17 @@
 const Overview = (props) => {
+    const { tasks } = props
+    function handleClick(e) {
+        const tasksFilter = tasks.filter((t) => { return t.id != e.target.getAttribute('a-key') })
+        // setTasks(tasksFilter)
 
-    return <div {...props.tasks.map((item, index) => <p key={index._id}> 1 </p>)} ></div>
+    }
+
+    return <div>   {tasks.map((task) => {
+        return (<div key={task.id}>
+            <p>{task.text}  </p>
+            <button onClick={handleClick} a-key={task.id}> DELETE</button>
+        </div>)
+    })}</div>
 
 
 

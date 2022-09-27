@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Overview from './comps/Overview';
+import uniqid from "uniqid";
 
 function App() {
 
@@ -8,9 +9,10 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState({ text: '' })
 
-  const handleChange = (e) => setTask({ text: e.target.value, id: tasks.length + 1 });
+  const handleChange = (e) => setTask({ text: e.target.value, id: uniqid() });
 
   const addTaskArray = () => {
+    console.log(tasks);
     setTasks([...tasks, task])
   }
 
