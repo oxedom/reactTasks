@@ -1,9 +1,13 @@
 const Overview = (props) => {
 
-    return (<div>
-        <span> {props.text}</span>
-        <span> {props._id} </span>
-    </div>);
+    return <div {...props.tasks.map((item, index) => <p key={index._id}> 1 </p>)} ></div>
+
+
+
+
 }
+
+
+
 
 export default Overview;

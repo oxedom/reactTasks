@@ -29,7 +29,8 @@ function App() {
         <input name="title" id='taskInput' onChange={handleChange} value={task.text} />
         <input type="submit" value="Submit" />
       </form>
-      {tasks.map((item, index) => <Overview text={item.text} _id={item.id} key={index} >  </Overview>)}
+
+      <Overview tasks={tasks}></Overview>
     </div>
   );
 }
