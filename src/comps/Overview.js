@@ -1,9 +1,8 @@
 const Overview = (props) => {
     const { tasks } = props
     function handleClick(e) {
-        const tasksFilter = tasks.filter((t) => { return t.id != e.target.getAttribute('a-key') })
-        // setTasks(tasksFilter)
-
+        const tasksFilter = tasks.filter((t) => { return t.id !== e.target.getAttribute('a-key') })
+        props.onTasksChange(tasksFilter)
     }
 
     return <div>   {tasks.map((task) => {

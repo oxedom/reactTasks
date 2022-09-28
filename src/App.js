@@ -32,7 +32,7 @@ function App() {
         <input type="submit" value="Submit" />
       </form>
 
-      <Overview tasks={tasks}></Overview>
+      <Overview tasks={tasks} onTasksChange={setTasks}></Overview>
     </div>
   );
 }
