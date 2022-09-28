@@ -1,40 +1,63 @@
-import { useState } from 'react';
 import './App.css';
 import Overview from './comps/Overview';
 import uniqid from "uniqid";
+import React, { Component } from "react";
 
-function App() {
 
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      task: { text: "" },
+      tasks: [],
 
-  const [tasks, setTasks] = useState([]);
-  const [task, setTask] = useState({ text: '' })
+    }
+  }
 
-  const handleChange = (e) => setTask({ text: e.target.value, id: uniqid() });
+  handleChange = (e) => {
+    this.setState({
+      task: { text: e.target.value, id: uniqid() }
+    });
+  };
 
-  const addTaskArray = () => {
-    console.log(tasks);
-    setTasks([...tasks, task])
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.setState({
+      tasks: this.state.tasks.concat(this.state.task),
+      task: { text: "" }
+    },)
+  }
+
+  addTaskArray = () => {
+
+  }
+
+  updateTasks = (newTasks) => {
+    this.setState({ tasks: newTasks })
   }
 
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    addTaskArray()
-    setTask({ text: "" })
-  }
+  render() {
+    const { task, tasks } = this.state
 
-  return (
-    <div className="App">
+    return <div>
       <h1>{task.text}</h1>
-      <h1> {tasks.length} </h1>
-      <form onSubmit={handleSubmit}>
-        <input name="title" id='taskInput' onChange={handleChange} value={task.text} />
+      <h1> {tasks.length}</h1>
+      <form onSubmit={this.handleSubmit}>
+        <input name="title" id='taskInput' onChange={this.handleChange} value={task.text} />
         <input type="submit" value="Submit" />
       </form>
+      <Overview updateTasks={this.updateTasks} tasks={tasks} ></Overview>
 
-      <Overview tasks={tasks} onTasksChange={setTasks}></Overview>
     </div>
-  );
+  }
+
+
+
+
 }
+
+
+
 
 export default App;
